@@ -19,24 +19,24 @@ def sort_visualize(array, desc=False, visualize=True, sleep_time=SLEEP_TIME, par
     # Sorting a copy of array so that the original array is unchanged
     array_copy = np.array(array.copy())
 
-    def plot_figure(array, sleep_time=SLEEP_TIME, marker_x=None, title='', xlabel='', ylabel='', xticks=[], yticks=[], color='b'):
+    def plot_figure(array, l, r, sleep_time=SLEEP_TIME, title='', xlabel='', ylabel='', xticks=[], yticks=[], color='b'):
         # Plotting
         fig, ax = plot.bar(array, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color)
-        if(marker_x is not None):
-            ax.annotate(s=MARKER, xy=(marker_x, 0), xytext=(marker_x, MARKER_Y), xycoords='data', textcoords='data', fontsize=MARKER_SIZE, ha='center', fontweight=MARKER_WEIGHT, color=MARKER_COLOR)
+        ax.annotate(s=MARKER, xy=(l, 0), xytext=(l, MARKER_Y), xycoords='data', textcoords='data', fontsize=MARKER_SIZE, ha='center', fontweight=MARKER_WEIGHT, color=MARKER_COLOR)
+        ax.annotate(s=MARKER, xy=(r, 0), xytext=(r, MARKER_Y), xycoords='data', textcoords='data', fontsize=MARKER_SIZE, ha='center', fontweight=MARKER_WEIGHT, color=MARKER_COLOR)
         plt.show(block=False)
         plt.pause(sleep_time)
         plt.close()
 
     def partition(array, l, r, desc=False, visualize=True, partition_strategy='random', sleep_time=SLEEP_TIME, title='', xlabel='', ylabel='', xticks=[], yticks=[], color='b', random_seed=1):
-        if(visualize == True):
-            plot_figure(array, sleep_time=sleep_time, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color)
-
         random.seed(random_seed)
         pivot_index = l
         if(partition_strategy == 'first'):
             # Pivot is the element with index l
             pivot_index = l
+        elif(partition_strategy == 'mid'):
+            # Pivot is the element with index ((l + r) // 2)
+            pivot_index = (l + r) // 2
         elif(partition_strategy == 'last'):
             # Pivot is the element with index r
             pivot_index = r
@@ -58,7 +58,7 @@ def sort_visualize(array, desc=False, visualize=True, sleep_time=SLEEP_TIME, par
                 # Pivot is the element with index (l + r) // 2
                 pivot_index = (l + r) // 2
         else:
-            print('partition_strategy must be \'first\', \'random\' or \'median_of_3\'.')
+            print('partition_strategy must be \'first\', \'mid\', \'last\', \'random\' or \'median_of_3\'.')
             sys.exit()
 
         # Moving pivot to index r
@@ -83,7 +83,7 @@ def sort_visualize(array, desc=False, visualize=True, sleep_time=SLEEP_TIME, par
         array[i + 1], array[r] = array[r], array[i + 1]
 
         if(visualize == True):
-            plot_figure(array, sleep_time=sleep_time, marker_x=i + 1, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color)
+            plot_figure(array, l, r, sleep_time=sleep_time, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color)
 
         return i + 1
 
@@ -91,15 +91,9 @@ def sort_visualize(array, desc=False, visualize=True, sleep_time=SLEEP_TIME, par
         if(l >= r):
             return
 
-        if(visualize == True):
-            plot_figure(array, sleep_time=sleep_time, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color)
-
         partition_index = partition(array, l, r, desc=desc, visualize=visualize, partition_strategy=partition_strategy, sleep_time=sleep_time, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color, random_seed=random_seed)
         quick_sort(array, l, partition_index - 1, desc=desc, visualize=visualize, partition_strategy=partition_strategy, sleep_time=sleep_time, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color, random_seed=random_seed)
         quick_sort(array, partition_index + 1, r, desc=desc, visualize=visualize, partition_strategy=partition_strategy, sleep_time=sleep_time, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color, random_seed=random_seed)
-
-        if(visualize == True):
-            plot_figure(array, sleep_time=sleep_time, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color)
 
     if(visualize == True):
         quick_sort(array, 0, len(array) - 1, desc=desc, visualize=visualize, partition_strategy=partition_strategy, sleep_time=sleep_time, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color, random_seed=random_seed)
