@@ -1,3 +1,5 @@
+"""Script to generate comparative plots of sorting time vs input size for different sorting algorithms."""
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

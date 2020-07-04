@@ -1,3 +1,5 @@
+"""Script to generate sorting time vs input size graphs."""
+
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
@@ -5,7 +7,7 @@ import sys
 from sort_visualizer import bubble, selection, insertion, merge, quick, heap, radix
 from initializer import initializer
 
-RANDOM_SEED = 1
+RANDOM_SEED = 1     # Seed for the PRNG
 SORTS = ['bubble', 'selection', 'insertion', 'merge', 'quick', 'heap', 'radix']
 INITIALIZATIONS = ['random', 'reverse', 'many_same', 'error']
 

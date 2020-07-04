@@ -8,6 +8,8 @@ from helper import is_sorted, plot
 SLEEP_TIME = 0.0001     # Time in milliseconds between plotting figures (frames)
 
 def sort_visualize(array, desc=False, visualize=True, sleep_time=SLEEP_TIME, title='', xlabel='', ylabel='', xticks=[], yticks=[], color='b'):
+    """Function to visualize radix sort. Docs same as for bubble sort."""
+
     # Sorting a copy of array so that the original array is unchanged
     array_copy = np.array(array.copy())
     # Converting dtype of array to np.int32 as radix sort works only on integers

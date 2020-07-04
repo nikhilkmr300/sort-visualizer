@@ -15,6 +15,20 @@ MARKER_COLOR = 'r'  # Color of marker text
 SLEEP_TIME = 0.0001     # Time in milliseconds between plotting figures (frames)
 
 def sort_visualize(array, desc=False, visualize=True, sleep_time=SLEEP_TIME, title='', xlabel='', ylabel='', xticks=[], yticks=[], color='b'):
+    """
+    Function to visualize bubble sort.
+
+    Parameters:
+    array (arraylike): Array to be sorted.
+    desc (bool): Sort in ascending order if True, else sort in descending order.
+    visualize (bool): Generates visualization if True.
+    sleep_time (float): Time in ms between frames.
+    Other parameters are for the matplotlib plot.
+
+    Returns:
+    tuple: Tuple containing the sorted array and the time taken for sorting.
+    """
+
     # Sorting a copy of array so that the original array is unchanged
     array_copy = np.array(array.copy())
 
