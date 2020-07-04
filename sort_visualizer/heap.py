@@ -134,9 +134,7 @@ def sort_visualize(array, desc=False, visualize=True, sleep_time=SLEEP_TIME, tit
                     plot_figure(full_array, sleep_time=sleep_time, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color)
             i += 1
 
-        stop_time = time.time()
-
-        return result_array, stop_time - start_time
+        return result_array
 
     if(visualize == True):
         array_copy = heap_sort(array_copy, desc=desc, visualize=visualize, sleep_time=sleep_time, title=title, xlabel=xlabel, ylabel=ylabel, xticks=xticks, yticks=yticks, color=color)

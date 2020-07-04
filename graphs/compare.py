@@ -18,12 +18,13 @@ for i in range(1, len(sys.argv)):
     sort_time = df.iloc[:, 2].values
 
     # Cropping for small_compare
+    """
     mask = input_size <= 150
     input_size = input_size[mask]
     sort_time = sort_time[mask]
+    """
 
-    label = sys.argv[i].strip('.csv')
-    label = label.strip('../data/').capitalize()
+    label = (sys.argv[i].split('/'))[-1][:-4].capitalize()
 
     ax.plot(input_size, sort_time, label=label)
 ax.legend()

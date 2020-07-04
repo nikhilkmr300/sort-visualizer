@@ -10,6 +10,11 @@ SLEEP_TIME = 0.0001     # Time in milliseconds between plotting figures (frames)
 def sort_visualize(array, desc=False, visualize=True, sleep_time=SLEEP_TIME, title='', xlabel='', ylabel='', xticks=[], yticks=[], color='b'):
     # Sorting a copy of array so that the original array is unchanged
     array_copy = np.array(array.copy())
+    # Converting dtype of array to np.int32 as radix sort works only on integers
+    array_copy = array_copy.astype(np.int32)
+    # Converting all elements to non-negative by taking absolute value as radix
+    # sort works only on non
+    array_copy = np.abs(array_copy)
 
     def plot_figure(array, sleep_time=SLEEP_TIME, title='', xlabel='', ylabel='', xticks=[], yticks=[], color='b'):
         # Plotting
