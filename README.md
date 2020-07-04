@@ -16,12 +16,15 @@ Includes the following sorting algorithms:
 # Examples
 ## Snapshots
 Snapshots of animations of insertion, merge and heap sorts.
+
 ### Insertion sort
 <img src="https://github.com/nikhilkmr300/sort-visualizer/blob/master/snapshots/insertion.png" width="320">
 Note the sorted portion forming on the left.
+
 ### Merge sort
 <img src="https://github.com/nikhilkmr300/sort-visualizer/blob/master/snapshots/merge.png" width="320">
 Note the sorted subarrays before merging.
+
 ### Heap sort
 <img src="https://github.com/nikhilkmr300/sort-visualizer/blob/master/snapshots/heap.png" width="320">
 Note the sorted portion forming on the right,
